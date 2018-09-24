@@ -58,10 +58,24 @@ class Timers extends React.Component {
   };
 
   deleteTimer(id) {
+    const timings = this.state.timing.map((timing) => {
+      if(timing.id === id) {
+        return {
+          ...timing,
+          interval: clearInterval(timing.interval)
+        }
+      } else {
+        return timing
+      }
+    })
+
     this.setState({
       timers: this.state.timers.filter(timer =>
         id !== timer.id
-      )
+      ),
+      timing: timings.filter(timing =>
+        id !== timing.id
+      ) 
     });
   };
 
