@@ -149,13 +149,60 @@ class Timers extends React.Component {
     });
   }
 
+  changeProperties = (id) => (e) => {
+    const timers = this.state.timers.map((timer) => {
+      if (timer.id === id && e.target.name === 'title') {
+        return {
+          ...timer,
+          formTitle: e.target.value
+        }
+      } else if (timer.id === id && e.target.name === 'project'){
+        return {
+          ...timer,
+          formProject: e.target.value
+        }
+      } else {
+        return timer
+      }
+    })
+
+    this.setState({
+      timers: timers
+    });
+  }
+
+  updateTimer = (id) => (e) => {
+    e.preventDefault();
+    const timers = this.state.timers.map((timer) => {
+      if (timer.id === id) {
+        return {
+          ...timer,
+          title: timer.formTitle === '' ? timer.title : timer.formTitle,
+          project: timer.formProject === '' ? timer.project : timer.formProject,
+          edit: false
+        }
+      } else {
+        return timer
+      }
+    })
+
+    this.setState({
+      timers: timers
+    });
+  }
+
   render() {
     return (
       <Container>
         <Grid container centered columns={3} >
         {this.state.timers.map(timer =>
           timer.edit ? 
-            <TimerForm />  :
+            <TimerForm 
+            key={timer.id}
+            title={timer.title}
+            project={timer.project}
+            handleChange={this.changeProperties(timer.id)}
+            handleUpdate={this.updateTimer(timer.id)}/>  :
             <TimerCard 
             key={timer.id}
             title={timer.title}

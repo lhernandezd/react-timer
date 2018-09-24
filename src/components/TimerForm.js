@@ -6,14 +6,14 @@ const TimerForm = (props) => {
     <Grid.Row>
       <Card>
         <Card.Content>
-          <Form size='large'>
+          <Form size='large' onSubmit={props.handleUpdate}>
             <Form.Field>
               <label>Title</label>
-              <input name='title'/>
+              <input placeholder={props.title} name='title' onChange={props.handleChange}/>
             </Form.Field>
             <Form.Field>
               <label>Project</label>
-              <input name='project'/>
+              <input placeholder={props.project} name='project' onChange={props.handleChange}/>
             </Form.Field>
             <div className='ui two buttons'>
               <Button type='submit' basic fluid color='blue'>Update</Button>
