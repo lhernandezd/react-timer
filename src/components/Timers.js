@@ -42,6 +42,23 @@ class Timers extends React.Component {
     });
   };
 
+  editTimer(id) {
+    const timers = this.state.timers.map((timer) => {
+      if (timer.id === id) {
+        return {
+          ...timer,
+          edit: true
+        }
+      } else {
+        return timer
+      }
+    })
+
+    this.setState({
+      timers: timers
+    });
+  };
+
   render() {
     return (
       <Container>
@@ -54,7 +71,8 @@ class Timers extends React.Component {
             title={timer.title}
             project={timer.project}
             active={timer.active}
-            handleDelete={() => this.deleteTimer(timer.id)}/>
+            handleDelete={() => this.deleteTimer(timer.id)}
+            handleEdit={() => this.editTimer(timer.id)}/>
         )}
         <Grid.Row>
           <Icon
