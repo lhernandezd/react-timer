@@ -6,6 +6,9 @@ import TimerCard from './TimerCard';
 class Timers extends React.Component {
   constructor(props) {
     super(props);
+    this.newTimer = this.newTimer.bind(this);
+    this.editTimer = this.editTimer.bind(this);
+    this.deleteTimer = this.deleteTimer.bind(this);
 
     this.state = {
       timers: [
@@ -33,6 +36,24 @@ class Timers extends React.Component {
       timing: []
     }
   }
+
+  newTimer() {
+    const numberOfTimers = this.state.timers.length;
+    const newId = numberOfTimers !== 0 ? (this.state.timers[numberOfTimers-1].id) + 1 : 0;
+    const timer = {
+      title: '', 
+      project: '', 
+      id: newId, 
+      edit: true,
+      formTitle: '',
+      formProject: '',
+      active: false,
+      counter: 1
+    };
+    this.setState({
+      timers: this.state.timers.concat(timer)
+    });
+  };
 
   deleteTimer(id) {
     this.setState({
@@ -76,6 +97,7 @@ class Timers extends React.Component {
         )}
         <Grid.Row>
           <Icon
+          onClick={this.newTimer}
           link size='big' 
           name="add square"
           />
