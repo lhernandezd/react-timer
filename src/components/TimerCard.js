@@ -10,7 +10,7 @@ const TimerCard = (props) => {
           <Card.Meta textAlign='left'>{props.project}</Card.Meta>
           <Card.Description style={{fontSize: '25px'}}> <strong>00:00:00</strong> </Card.Description>
           <Card.Description textAlign='right'>
-            <Icon link name='trash alternate'/>
+            <Icon onClick={props.handleDelete} link name='trash alternate'/>
             <Icon link name='edit'/>
           </Card.Description>
         </Card.Content>

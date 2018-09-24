@@ -34,6 +34,14 @@ class Timers extends React.Component {
     }
   }
 
+  deleteTimer(id) {
+    this.setState({
+      timers: this.state.timers.filter(timer =>
+        id !== timer.id
+      )
+    });
+  };
+
   render() {
     return (
       <Container>
@@ -45,7 +53,8 @@ class Timers extends React.Component {
             key={timer.id}
             title={timer.title}
             project={timer.project}
-            active={timer.active}/>
+            active={timer.active}
+            handleDelete={() => this.deleteTimer(timer.id)}/>
         )}
         <Grid.Row>
           <Icon
