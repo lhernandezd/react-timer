@@ -1,7 +1,8 @@
 {
-  "name": "cronometro",
+  "name": "timers",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lhernandezd.github.io/react-timer",
   "dependencies": {
     "ajv": "^6.5.4",
     "react": "^16.5.2",
@@ -10,9 +11,14 @@
     "semantic-ui-react": "^0.82.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.0"
   }
 }
