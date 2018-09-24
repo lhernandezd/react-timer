@@ -6,8 +6,8 @@ const TimerCard = (props) => {
     <Grid.Row>
         <Card>
         <Card.Content>
-          <Card.Header textAlign='left'>Title</Card.Header>
-          <Card.Meta textAlign='left'>Project</Card.Meta>
+          <Card.Header textAlign='left'>{props.title}</Card.Header>
+          <Card.Meta textAlign='left'>{props.project}</Card.Meta>
           <Card.Description style={{fontSize: '25px'}}> <strong>00:00:00</strong> </Card.Description>
           <Card.Description textAlign='right'>
             <Icon link name='trash alternate'/>
@@ -15,7 +15,11 @@ const TimerCard = (props) => {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
+          {props.active ? 
+          <Button basic fluid color='red'>Stop</Button>
+          :
           <Button basic fluid color='green'>Start</Button>
+          }
         </Card.Content>
       </Card>
     </Grid.Row>
