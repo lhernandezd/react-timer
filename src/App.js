@@ -6,7 +6,7 @@ const App = (props) => {
   return (
     <div className="App">
       <h1 className='header-app'>Timers</h1>
-      <Timers />
+      <Timers/>
     </div>
   );
 }
