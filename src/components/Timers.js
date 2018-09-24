@@ -10,6 +10,7 @@ class Timers extends React.Component {
     this.editTimer = this.editTimer.bind(this);
     this.deleteTimer = this.deleteTimer.bind(this);
     this.buttonStart = this.buttonStart.bind(this);
+    this.buttonStop = this.buttonStop.bind(this);
 
     this.state = {
       timers: [
@@ -119,6 +120,35 @@ class Timers extends React.Component {
     });
   }
 
+  buttonStop(id) {
+    const timings = this.state.timing.map((timing) => {
+      if (timing.id === id) {
+        return {
+          ...timing,
+          interval: clearInterval(timing.interval)
+        }
+      } else {
+        return timing
+      }
+    })
+
+    const timers = this.state.timers.map((timer) => {
+      if (timer.id === id) {
+        return {
+          ...timer,
+          active: false
+        }
+      } else {
+        return timer
+      }
+    })
+
+    this.setState({
+      timers: timers,
+      timing: timings
+    });
+  }
+
   render() {
     return (
       <Container>
@@ -134,7 +164,8 @@ class Timers extends React.Component {
             counter={timer.counter}
             handleDelete={() => this.deleteTimer(timer.id)}
             handleEdit={() => this.editTimer(timer.id)}
-            handleStart={() => this.buttonStart(timer.id,timer.counter)}/>
+            handleStart={() => this.buttonStart(timer.id,timer.counter)}
+            handleStop={() => this.buttonStop(timer.id)}/>
         )}
         <Grid.Row>
           <Icon

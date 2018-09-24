@@ -46,7 +46,7 @@ class TimerCard extends React.Component {
           </Card.Content>
           <Card.Content extra>
             {this.props.active ? 
-            <Button basic fluid color='red'>Stop</Button>
+            <Button onClick={this.props.handleStop}basic fluid color='red'>Stop</Button>
             :
             <Button onClick={this.props.handleStart} basic fluid color='green'>Start</Button>
             }
