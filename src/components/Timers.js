@@ -9,6 +9,7 @@ class Timers extends React.Component {
     this.newTimer = this.newTimer.bind(this);
     this.editTimer = this.editTimer.bind(this);
     this.deleteTimer = this.deleteTimer.bind(this);
+    this.buttonStart = this.buttonStart.bind(this);
 
     this.state = {
       timers: [
@@ -20,7 +21,7 @@ class Timers extends React.Component {
           formTitle: '',
           formProject: '',
           active: false,
-          counter: 1
+          counter: 0
         }, 
         {
           title: 'React Exercises', 
@@ -30,7 +31,7 @@ class Timers extends React.Component {
           formTitle: '',
           formProject: '',
           active: false,
-          counter: 1
+          counter: 0
         }
       ],
       timing: []
@@ -48,7 +49,7 @@ class Timers extends React.Component {
       formTitle: '',
       formProject: '',
       active: false,
-      counter: 1
+      counter: 0
     };
     this.setState({
       timers: this.state.timers.concat(timer)
@@ -80,6 +81,44 @@ class Timers extends React.Component {
     });
   };
 
+  buttonStart(id,counter) {
+    const timers = this.state.timers.map((timer) => {
+      if (timer.id === id) {
+        return {
+          ...timer,
+          active: true
+        }
+      } else {
+        return timer
+      }
+    })
+
+    this.setState({
+      timers: timers,
+      timing: this.state.timing.concat({
+        id: id,
+        interval: setInterval(() => {this.tick(id,counter)},10)
+      })
+    })
+  }
+
+  tick(id) { 
+    const timers = this.state.timers.map((timer) => {
+      if (timer.id === id) {
+        return {
+          ...timer,
+          counter: timer.counter + 1
+        }
+      } else {
+        return timer
+      }
+    })
+
+    this.setState({
+      timers: timers
+    });
+  }
+
   render() {
     return (
       <Container>
@@ -92,8 +131,10 @@ class Timers extends React.Component {
             title={timer.title}
             project={timer.project}
             active={timer.active}
+            counter={timer.counter}
             handleDelete={() => this.deleteTimer(timer.id)}
-            handleEdit={() => this.editTimer(timer.id)}/>
+            handleEdit={() => this.editTimer(timer.id)}
+            handleStart={() => this.buttonStart(timer.id,timer.counter)}/>
         )}
         <Grid.Row>
           <Icon
