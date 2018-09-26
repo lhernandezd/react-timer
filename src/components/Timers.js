@@ -26,7 +26,7 @@ class Timers extends React.Component {
         }, 
         {
           title: 'React Exercises', 
-          project: 'React and Redux', 
+          project: 'React, Redux and React-router', 
           id: 1, 
           edit: false,
           formTitle: '',
