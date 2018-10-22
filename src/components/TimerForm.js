@@ -16,8 +16,11 @@ const TimerForm = (props) => {
               <input placeholder={props.project} name='project' onChange={props.handleChange}/>
             </Form.Field>
             <div className='ui two buttons'>
-              <Button type='submit' basic fluid color='blue'>Update</Button>
-              <Button basic fluid color='red'>Cancel</Button>
+              <Button type='submit' basic fluid color='blue'>{props.title !== '' ? 'Update' : 'Create'}</Button>
+              {props.title !== '' ? 
+              <Button basic fluid color='red'>Cancel</Button> : 
+              <Button basic fluid color='red' onClick={props.handleDelete}>Cancel</Button>
+              }
             </div>
           </Form>
         </Card.Content>

@@ -216,7 +216,8 @@ class Timers extends React.Component {
             title={timer.title}
             project={timer.project}
             handleChange={this.changeProperties(timer.id)}
-            handleUpdate={this.updateTimer(timer.id)}/>  :
+            handleUpdate={this.updateTimer(timer.id)}
+            handleDelete={() => this.deleteTimer(timer.id)}/>  :
             <TimerCard 
             key={timer.id}
             title={timer.title}
